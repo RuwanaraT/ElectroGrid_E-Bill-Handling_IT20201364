@@ -38,13 +38,6 @@ public class EBillServices {
 	 return ebill.DisplayEBills(); 
 	}
 	
-	@GET
-	@Path("/{id}") 
-	@Produces(MediaType.TEXT_HTML) 
-	public String DisplayEBill(@PathParam("id") String billID) 
-	 { 
-	 return ebill.DisplayEBill(billID); 
-	}
 	
 	@PUT
 	@Path("/") 
