@@ -46,12 +46,14 @@ public class EBill {
 	 // close the connection
 	 con.close(); 
 	 
-	 output = "E-Bill Created Successfully."; 
+	 String newEBill = DisplayEBills(); 
+	 output = "{\"status\":\"success\", \"data\": \"" + newEBill + "\"}"; 
 	 
 	 } catch (Exception e) { 
 		 
-	 output = "Error while Creating E-Bill."; 
-	 System.err.println(e.getMessage()); 
+		 output = "{\"status\":\"error\", \"data\": \"Error while Creating the E-Bill!.\"}"; 
+		 System.err.println(e.getMessage()); 
+
 	 
 	 } 
 	 
@@ -99,7 +101,7 @@ public class EBill {
 			 output += "<td>" + amount + "</td>"; 
 	 
 	 // buttons
-			 output += "<td> <input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'> </td> <td><form method='post' action='EBill.jsp'> <input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'> <input name='hidItemIDDelete' type='hidden' value='" + billID + "'>" + "</form> </td> </tr>"; 
+			 output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='" + billID + "'></td>" + "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ billID + "'>" + "</td></tr>"; 
 	 
 	 } 
 	 
@@ -151,12 +153,13 @@ public class EBill {
 	 // close the connection
 	 con.close(); 
 	 
-	 output = "E-Bill Updated successfully"; 
+	 String newEBill = DisplayEBills(); 
+	 output = "{\"status\":\"success\", \"data\": \"" + newEBill + "\"}"; 
 	 } 
 	 
 	 catch (Exception e) { 
-	 output = "Error while Updating the E-Bill."; 
-	 System.err.println(e.getMessage()); 
+		 output = "{\"status\":\"error\", \"data\": \"Error while Updating the E-Bill!.\"}"; 
+		 System.err.println(e.getMessage());; 
 	 
 	 } 
 	 
@@ -189,12 +192,13 @@ public class EBill {
 	 // close the connection
 	 con.close(); 
 	 
-	 output = "E-Bill Deleted successfully"; 
+	 String newEBill = DisplayEBills(); 
+	 output = "{\"status\":\"success\", \"data\": \"" + newEBill + "\"}"; 
 	 
 	 } 
 	 catch (Exception e) { 
-	 output = "Error while Deleting the E-Bill."; 
-	 System.err.println(e.getMessage()); 
+		 output = "{\"status\":\"error\", \"data\": \"Error while Deleting the E-Bill!.\"}"; 
+		 System.err.println(e.getMessage());
 	 
 	 } 
 	 
