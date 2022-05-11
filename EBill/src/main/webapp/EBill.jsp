@@ -3,46 +3,6 @@
     
 <%@ page import = "model.EBill" %>
     
-<% 
-//Submit---------------------------------
-if (request.getParameter("eaNumber") != null) { 
-	
-    EBill ebill = new EBill(); 
-         
-    String stsMsg = ""; 
-//Insert--------------------------
-             if (request.getParameter("hidItemIDSave") == "") { 
-                   stsMsg = ebill.createEBill(request.getParameter("eaNumber"), 
-                            request.getParameter("cusName"), 
-                            request.getParameter("address"), 
-                            request.getParameter("billingDat+e"),
-                            request.getParameter("amount")); 
-             } 
-             else { //Update----------------------
-
-                    stsMsg = ebill.updateEBill(request.getParameter("hidItemIDSave"), 
-                             request.getParameter("eaNumber"), 
-                             request.getParameter("cusName"), 
-                             request.getParameter("address"), 
-                             request.getParameter("billingDate"),
-                             request.getParameter("amount")); 
-             } 
-
-             session.setAttribute("statusMsg", stsMsg);  
-}
-
-
-//Delete-----------------------------
-if (request.getParameter("hidItemIDDelete") != null) 
-{ 
-	EBill ebill = new EBill();  
-	
-    String stsMsg = ebill.deleteEBill(request.getParameter("hidItemIDDelete")); 
-
-    session.setAttribute("statusMsg", stsMsg); 
-}
-%>
-
 <!DOCTYPE html>
 <html>
 
@@ -162,7 +122,7 @@ if (request.getParameter("hidItemIDDelete") != null)
         
         <br/>
 
-        <div class = "container">
+        <div class = "container" id="tab">
 
 
             <%
@@ -175,11 +135,9 @@ if (request.getParameter("hidItemIDDelete") != null)
          
         <br/>
 
-        <div class="container alert alert-success">
-              <%
-                out.print(session.getAttribute("statusMsg")); 
-              %>
-        </div> 
+        <div id="alertSuccess" class="alert alert-success"></div>
+        <div id="alertError" class="alert alert-danger"></div>
+
         
         <br/>
 
